@@ -1,0 +1,43 @@
+nodejs也是js，它能更好的支持es6
+
+nodejs和浏览器一样 都是运行环境
+
+
+
+浏览器其实是 ECMAScript 的一个运行环境
+
+Nodejs 是 ECMAScript 的一个运行环境
+
+Flash 是 ECMAScript 的一个运行环境
+
+
+当 ECMAScript 运行在 浏览器 中时，我们成为Javascript（简称JS）
+当 ECMAScript 运行在 Nodejs 中时，我们成为Nodejs
+当 ECMAScript 运行在 Flash 中时，我们成为ActionScript（简称AS）
+
+
+
+浏览器分为两大部分（渲染引擎和js解析引擎）真正运行的解析引擎
+
+Nodejs用的是V8引擎 Chrome用的
+
+不排队就是非阻塞的
+
+跨平台就是跨操作系统
+
+H5也可以跨平台
+
+
+const 也是块级的
+
+
+// var 可以重复声明，let不可以
+
+使用解析赋值时，需要使用 关键字声明
+// 必须有关键字
+
+
+
+let和const不存在变量提升问题 
+
+
