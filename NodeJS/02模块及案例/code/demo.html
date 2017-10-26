@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+      <meta charset="UTF-8">
+      <title>Document</title>
+</head>
+<body>
+      <script type="text/javascript">
+            
+            var module = {};
+
+            module.exports = {};
+
+            module.exports.name = '小明';
+
+            var exports = module.exports;
+
+            // console.log(exports.name); // 小明
+
+            // exports.name = '小红';
+            // console.log( module.exports.name ); //小红
+            // 两把钥匙开同一把锁
+            
+            exports = {name: '小红'}; //重新开辟了一个空间
+            // ？ module.exports.name 的值为 什么值
+            console.log( module.exports.name ); //小明
+
+      </script>
+</body>
+</html>
