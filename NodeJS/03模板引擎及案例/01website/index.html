@@ -3,7 +3,10 @@
 <head>
 	<meta charset="UTF-8">
 	<title>Nodejs服务器</title>
-	<link rel="stylesheet" href="./css/main.css">
+	<!-- / 是 服务器地址的简写 -->
+	<!-- / = http://localhost:3000 -->
+	<!-- / = http://www.baidu.com -->
+	<link rel="stylesheet" href="/css/main.css">
 </head>
 <body>
 	<div class="viewport">
@@ -12,6 +15,7 @@
 			<a href="/" class="active">首页</a>
 			<a href="/doc">文档</a>
 			<a href="/blog">博客</a>
+			<!-- ./ 和 / 在这里是一样的 -->
 		</nav>
 		<section>
 			<h2>{{title}}</h2>
@@ -19,10 +23,10 @@
 				<figcaption>
 					<h3>这张图美不美</h3>
 				</figcaption>
-				<img src="./images/aa.jpg" alt="">
+				<img src="/images/aa.jpg" alt="">
 			</figure>
 		</section>
 	</div>
-	<script src="./js/jquery.min.js"></script>
+	<script src="/js/jquery.min.js"></script>
 </body>
 </html>

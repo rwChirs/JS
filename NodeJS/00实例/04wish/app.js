@@ -29,7 +29,7 @@ app.on('request', (req, res) => {
       // 需要获取真实路径
       let realPath = '.' + pathname;
 
-      res.render = function(tpl, data) {
+      res.render = function(tpl, data) { //不同的模板不同的数据
             let html = template(tpl, data);
 
             // console.log(html);
@@ -45,9 +45,9 @@ app.on('request', (req, res) => {
                         info: '学习使用模板引擎'
                   }
 
-                  res.render('index', data);
-
-                  
+                  res.render('index', data); //render里面调用template，只需要传递不同的模板名称（index），模板引擎会自动去拼接
+                  // 怎么拼接的？在'./'下拼接上'index'名字再拼上'.html'后缀，就读取到文件了
+                  // 然后把数据放到文件里面，最终响应给浏览器html
             break;
 
             default:
