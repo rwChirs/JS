@@ -84,7 +84,8 @@ admin.get('/logout', (req, res) => {
 
 
 // 头像上传(用中间件来处理 multer)
-admin.post('/upfile', (req, res) => {
+admin.post('/upfile', upload.single('avatar'), (req, res) => {
+    // console.log('ddddd')
     // console.log(req.file);
     // res.send('ok');
 

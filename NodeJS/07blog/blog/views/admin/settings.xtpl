@@ -112,7 +112,7 @@
             data.append('avatar', this.files[0]);
 
             // 实例化Ajax
-            var xhr = new XHLHttpRequest;
+            var xhr = new XMLHttpRequest;
             xhr.open('post', '/admin/upfile');
             xhr.send(data);
             xhr.onreadystatechange = function() {
