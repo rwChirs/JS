@@ -1,0 +1,100 @@
+<!-- 编辑和添加应该是同一个 -->
+<!-- 编辑是先读取数据再添加 -->
+
+{{extend ('./layout')}}
+
+{{#block ('body')}}
+    <!-- 写文章 -->
+    <div class="body blog">
+        <!-- 面包屑 -->
+        <ol class="breadcrumb">
+            <li><a href="javascript:;">文章管理</a></li>
+            <li class="active">写文章</li>
+        </ol>
+        <div class="settings">
+            <form action="{{action}}" class="form-horizontal">
+                <!-- 要想编辑操作，需要把id一起传递 -->
+                {{#if (action !== '/admin/add')}}
+                <input type="hidden" name="id" value="{{post.id}}">
+                {{/if}}
+                <div class="form-group">
+                    <label for="" class="col-xs-3 control-label">标题</label>
+                    <div class="col-xs-6">
+                        <input type="text" name="title" value="{{post.title}}" class="form-control input-sm">
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label for="" class="col-xs-3 control-label">摘要</label>
+                    <div class="col-xs-6 ckeditor">
+                        <textarea name="brief" rows="5" class="form-control input-sm">{{post.brief}}</textarea>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label for="" class="col-xs-3 control-label">内容</label>
+                    <div class="col-xs-6">
+                        <textarea id="ckeditor" name="content" class="form-control input-sm">{{post.content}}</textarea>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <div class="col-xs-9">
+                        <input type="submit" value="保 存" class="btn btn-success btn-sm pull-right">
+                        
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+{{/block}}
+
+{{#block ('script')}}
+    <script src="./assets/ckeditor/ckeditor.js"></script>
+
+    <script>
+        // 得到了一个实例对象
+        CKEDITOR.replace('ckeditor', {
+            toolbarGroups: [
+                { name: 'clipboard',   groups: [ 'clipboard', 'undo' ] },
+                { name: 'forms' },
+                { name: 'basicstyles', groups: [ 'basicstyles', 'cleanup' ] },
+                { name: 'paragraph',   groups: [ 'list', 'indent', 'blocks', 'align', 'bidi' ] },
+                { name: 'styles' },
+                { name: 'colors' }
+            ]
+        });
+
+
+        $('form').on('submit', function() {
+            // 更新富文本元素否则无法获得表单数据
+            for (key in CKEDITOR.instances){ //instances例子实例的意思//遍历这个实例对象（CKEDITOR.instances）
+                CKEDITOR.instances[key].updateElement();//调用实例对象的updateElement，更新元素
+            }
+
+            var _this = $(this);
+            
+            //获取表单的action属性
+            var url = _this.attr('action');
+
+            $.ajax({
+                url: url,//同一个页面同一个逻辑，地址不同
+                type: 'post',
+                data: _this.serialize(), //更新完之后再获取数据就可以成功了
+                success: function(info) {
+                    // console.log(info);
+
+                    // 根据响应结果 判断是否登录成功
+                    if(info.code == 10000) { 
+                        location.href = '/admin/list';//跳转
+                    }
+                }
+
+
+            });
+
+            // 禁止表单默认提交
+            return false;
+
+        })
+
+    </script>
+{{/block}}  
+
